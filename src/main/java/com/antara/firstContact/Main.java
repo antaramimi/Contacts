@@ -22,6 +22,10 @@ public class Main {
         String surname = scanner.nextLine();
         System.out.println("Enter the number:");
         String number = scanner.nextLine();
+        if(!Contact.isNumberValid(number)){
+            System.out.println("Wrong number format!\n");
+            return;
+        }
         Contact contact = new Contact(name, surname, number);
         userContacts.add(contact);
         System.out.println("A record created!");
@@ -76,31 +80,38 @@ public class Main {
                         String name = sc.next();
                         contact.setName(name);
                         System.out.println("The record updated!");
-                    }else if (userInput.equalsIgnoreCase("surname")) {
+                    } else if (userInput.equalsIgnoreCase("surname")) {
                         String surname = sc.next();
                         contact.setName(surname);
                         System.out.println("The record updated!");
                     } else {
                         System.out.println("Enter the number ");
                         String number = sc.next();
+                        if(!Contact.isNumberValid(number)){
+                            return;
+                        }
                         contact.setNumber(number);
                         System.out.println("The record updated!");
                     }
-
                     break;
                 case 5:
-
+                    userList();
+                    System.out.println("Select a record ");
+                    int recordForDelete = sc.nextInt();
+                    Contact contactForDelete = userContacts.get(recordForDelete);
+                    userContacts.remove(contactForDelete);
+                    System.out.println("The record removed!");
                     break;
                 case 6:
                     System.exit(0);
 
             }
-            }
-
-
         }
 
+
     }
+
+}
 
 
 
