@@ -11,6 +11,15 @@ public class Contacts {
         this.surname=surname;
     }
 
+    @Override
+    public String toString() {
+        return
+                 name + ',' +
+                surname + ',' +
+                number
+                ;
+    }
+
     public String getName() {
         return name;
     }
