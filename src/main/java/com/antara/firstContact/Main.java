@@ -1,12 +1,10 @@
 package com.antara.firstContact;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    ArrayList<Contacts> userContacts = new ArrayList<>();
+    ArrayList<Contact> userContacts = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -24,10 +22,17 @@ public class Main {
         String surname = scanner.nextLine();
         System.out.println("Enter the number:");
         String number = scanner.nextLine();
-        Contacts contacts = new Contacts(name, surname, number);
-        userContacts.add(contacts);
+        Contact contact = new Contact(name, surname, number);
+        userContacts.add(contact);
         System.out.println("A record created!");
         System.out.println("A Phone Book with a single record created!");
+    }
+
+    public void userList() {
+        for (int i = 0; i < userContacts.size(); i++) {
+            String userlist = i + ":" + "" + userContacts.get(i);
+            System.out.println(userlist);
+        }
     }
 
     public void showMenu() {
@@ -56,17 +61,49 @@ public class Main {
                     }
                     break;
                 case 3:
-                    for(int i=0;i<userContacts.size();i++) {
-                        System.out.println(i+":"+ "" +userContacts.get(i));
-                    }
+                    userList();
                     break;
+                case 4:
+                    userList();
+                    System.out.println("Select a record ");
+                    int record = sc.nextInt();
+                    Contact contact = userContacts.get(record);
+                    System.out.println("Select a field (name, surname, number): ");
+                    String userInput = sc.next();
+
+                    if (userInput.equalsIgnoreCase("name")) {
+                        System.out.println("Enter the name ");
+                        String name = sc.next();
+                        contact.setName(name);
+                        System.out.println("The record updated!");
+                    }else if (userInput.equalsIgnoreCase("surname")) {
+                        String surname = sc.next();
+                        contact.setName(surname);
+                        System.out.println("The record updated!");
+                    } else {
+                        System.out.println("Enter the number ");
+                        String number = sc.next();
+                        contact.setNumber(number);
+                        System.out.println("The record updated!");
+                    }
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+                    System.exit(0);
 
             }
+            }
+
 
         }
 
-
     }
-}
+
+
+
+
 
 

@@ -1,11 +1,11 @@
 package com.antara.firstContact;
 
-public class Contacts {
+public class Contact {
     String name;
     String surname;
     String number;
 
-    Contacts(String name,String surname,String number){
+    Contact(String name, String surname, String number){
         this.name=name;
         this.number=number;
         this.surname=surname;
