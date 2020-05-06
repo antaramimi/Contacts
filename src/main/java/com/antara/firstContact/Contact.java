@@ -63,9 +63,6 @@ public class Contact {
             return false;
         }
 
-        else if (phoneNumber.startsWith("1")){
-            return false;
-        }
         return true;
     }
 }
