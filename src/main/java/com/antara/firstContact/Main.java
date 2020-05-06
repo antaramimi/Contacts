@@ -5,12 +5,13 @@ import java.util.Scanner;
 
 public class Main {
     ArrayList<Contact> userContacts = new ArrayList<>();
+    int size = userContacts.size();
+    int counter=userContacts.size();
 
 
     public static void main(String[] args) {
         Main main = new Main();
         main.showMenu();
-        main.createContactRecord();
 
     }
 
@@ -24,7 +25,6 @@ public class Main {
         String number = scanner.nextLine();
         if(!Contact.isNumberValid(number)){
             System.out.println("Wrong number format!\n");
-            return;
         }
         Contact contact = new Contact(name, surname, number);
         userContacts.add(contact);
@@ -34,40 +34,49 @@ public class Main {
 
     public void userList() {
         for (int i = 0; i < userContacts.size(); i++) {
-            String userlist = i + ":" + "" + userContacts.get(i);
+            String userlist = i+1 + "." + " " + userContacts.get(i);
             System.out.println(userlist);
         }
     }
 
     public void showMenu() {
-        int option;
+        String option;
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter action");
-            System.out.println("1: add");
-            System.out.println("2: count");
-            System.out.println("3: list");
-            System.out.println("4: edit");
-            System.out.println("5: remove");
-            System.out.println("6: Exit");
+            System.out.println("add");
+            System.out.println("count");
+            System.out.println("list");
+            System.out.println("edit");
+            System.out.println("remove");
+            System.out.println("exit");
 
 
-            option = Integer.valueOf(sc.nextLine());
+            option = String.valueOf(sc.nextLine());
             switch (option) {
-                case 1:
+                case "add":
                     createContactRecord();
                     break;
-                case 2:
-                    int size = userContacts.size();
-                    System.out.println("Size: " + size);
-                    if (size == 0) {
+                case "count":
+                    //int size = userContacts.size();
+                    //System.out.println("Size: " + size);
+                    if (size < 0) {
                         System.out.println("The Phone Book has 0 records.");
+                    }else {
+                            int counter=userContacts.size();
+                            System.out.println("The Phone Book has " + counter + " "+"records.");
+
                     }
                     break;
-                case 3:
+                case "list":
                     userList();
                     break;
-                case 4:
+                case "edit":
+                    //int size = userContacts.size();
+                    System.out.println("Size: " + size);
+                    if (size < 0) {
+                        System.out.println("No records to edit!");
+                    }else{
                     userList();
                     System.out.println("Select a record ");
                     int record = sc.nextInt();
@@ -92,17 +101,22 @@ public class Main {
                         }
                         contact.setNumber(number);
                         System.out.println("The record updated!");
+                    }}
+                    break;
+                case "remove":
+                    System.out.println("Size: " + size);
+                    if (size < 0) {
+                        System.out.println("No records to edit!");
+                    }else {
+                        userList();
+                        System.out.println("Select a record ");
+                        int recordForDelete = sc.nextInt();
+                        Contact contactForDelete = userContacts.get(recordForDelete);
+                        userContacts.remove(contactForDelete);
+                        System.out.println("The record removed!");
                     }
                     break;
-                case 5:
-                    userList();
-                    System.out.println("Select a record ");
-                    int recordForDelete = sc.nextInt();
-                    Contact contactForDelete = userContacts.get(recordForDelete);
-                    userContacts.remove(contactForDelete);
-                    System.out.println("The record removed!");
-                    break;
-                case 6:
+                case "exit":
                     System.exit(0);
 
             }

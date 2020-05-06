@@ -10,16 +10,20 @@ public class Contact {
 
     Contact(String name, String surname, String number){
         this.name=name;
-        this.number=number;
+        if(isNumberValid(number)){
+            this.number = number;
+        }else {
+            this.number="[no number]";
+        }
         this.surname=surname;
     }
 
     @Override
     public String toString() {
         return
-                 name + ',' +
+                 name + " "+
                 surname + ',' +
-                number
+                " "+number
                 ;
     }
 
